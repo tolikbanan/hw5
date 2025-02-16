@@ -1,13 +1,38 @@
 import './App.css'
-import Cards from "./components/Cards/Cards.tsx";
+import UserCard from "./components/UserCard/UserCard.tsx";
+import { User, getUsers } from './api/api.ts';
+import { useState, useEffect } from 'react';
 
-function App() {
+const App = () => {
+    const [users, setUsers] = useState<User[]>([]);
+    const [loading, setLoading] = useState(true);
 
-  return (
-    <>
-        <Cards/>
-    </>
-  )
-}
+    useEffect(() => {
+        const fetchData = async () => {
+            const data = await getUsers();
+            setUsers(data);
+            setLoading(false);
+        };
 
-export default App
+        fetchData();
+    }, []);
+
+    if (loading) {
+        return <div>Loading...</div>;
+    }
+
+    return (
+        <div>
+            <h1>User Information</h1>
+            <div>
+                {users.length > 0 ? (
+                    users.map((user) => <UserCard key={user.id} user={user} />)
+                ) : (
+                    <p>No users found.</p>
+                )}
+            </div>
+        </div>
+    );
+};
+
+export default App;
