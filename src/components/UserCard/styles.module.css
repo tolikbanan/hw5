@@ -1,0 +1,12 @@
+.card {
+    margin-top: 10px;
+    padding-left: 10px;
+    border-top: 1px solid #ddd;
+}
+
+.card2 {
+    border: 1px solid #ccc;
+    padding: 10px;
+    margin: 10px;
+    cursor: pointer;
+}

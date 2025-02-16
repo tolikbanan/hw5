@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { User, Post, getUserPosts } from '../../api/api.ts'
 import PostList from '../PostList/PostList.tsx';
+import styles from './styles.module.css'
 
 
 interface UserCardProps {
@@ -26,8 +27,7 @@ const UserCard: React.FC<UserCardProps> = ({ user }) => {
     };
 
     return (
-        <div
-            style={{ border: '1px solid #ccc', padding: '10px', margin: '10px', cursor: 'pointer' }}
+        <div className={styles.card2}
             onClick={handleUserClick}
         >
             <h2>{user.name}</h2>
@@ -41,7 +41,7 @@ const UserCard: React.FC<UserCardProps> = ({ user }) => {
             </p>
 
             {isOpen && (
-                <div style={{ marginTop: '10px', paddingLeft: '10px', borderTop: '1px solid #ddd' }}>
+                <div className={styles.card}>
                     {loading ? <p>Loading posts...</p> : <PostList posts={posts || []} />}
                 </div>
             )}
